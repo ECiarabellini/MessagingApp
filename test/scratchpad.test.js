@@ -1,4 +1,4 @@
-const Message = require('../scratchpad.js')
+const Message = require('../index.js')
 
 // A testing suite for Scratchpad is created.
 describe('Scratchpad', () => {
