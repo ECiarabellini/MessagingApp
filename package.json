@@ -1,0 +1,16 @@
+{
+  "name": "messagingapp-",
+  "version": "1.0.0",
+  "description": "Reviewing bootcamp concepts while creating an app for sending and retrieving messages",
+  "main": "scratchpad.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^12.6.1",
+    "jest": "^29.7.0"
+  }
+}
