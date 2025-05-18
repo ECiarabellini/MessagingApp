@@ -1,14 +1,23 @@
 const express = require('express');
 const path = require('path');
-const messages = require('./db/messages.json'); //temporary local json file to store messages
+const mysql = require('mysql2');
+const sequelize = require('./config/connection.js');
+//const messages = require('./db/messages.json'); //temporary local json file to store messages
 
 const app = express(); // Initialize an instance of Express.js
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json()); // Middleware for parsing application/json
 app.use(express.urlencoded({ extended: true })); //Middleware for urlencoded data
 
 app.use(express.static('public')); // Static middleware pointing to the public folder
+
+sequelize.sync().then(() => {
+    app.listen(PORT, () => console.log('Now listening'));
+});
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 //content from unit 11.
 // Create Express.js routes for default '/' and '/newMessage' endpoints
@@ -25,10 +34,7 @@ app.get('/api', (req, res) => res.json(messages));
 
 // POST request to send a message
 app.post('/api/messages', (req, res) => {
-    // Log that a POST request was received
     console.info(`${req.method} request received to post a message`);
-
-    // Destructuring assignment for the items in req.body
     const { from, to, subject, text } = req.body;
 
     // If all the required properties are present

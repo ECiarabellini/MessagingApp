@@ -27,13 +27,7 @@ const postMessage = (message) =>
 
 messageForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (!senderInput || !recipientInput || !subjectInput || !textInput) {
-        alert('Please fill in all fields.');
-        return;
-    };
     
-
-    //create new message object from input values
     const newMessage = {
         from: senderInput.value.trim(),
         to: recipientInput.value.trim(),
@@ -41,11 +35,13 @@ messageForm.addEventListener('submit', (e) => {
         text: textInput.value.trim()
     }
     
-
-  // Call our `postMessage` method to make a POST request with our `newMessage` object.
+    if (!senderInput.value || !recipientInput.value || !subjectInput.value || !textInput.value) {
+        alert('Please fill in all fields.');
+        return;
+    };
+    
     postMessage(newMessage)
         .then((data) => {
-            alert('Message sent!');
             messageForm.reset();
         })
         .catch((err) => console.error(err));
