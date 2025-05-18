@@ -1,28 +1,27 @@
-// Import Express.js
 const express = require('express');
-
-// Import built-in Node.js package 'path' to resolve path of files that are located on the server
 const path = require('path');
+const messages = require('./db/messages.json'); //temporary local json file to store messages
 
-// Initialize an instance of Express.js
-const app = express();
+const app = express(); // Initialize an instance of Express.js
+const PORT = 3000;
 
-// Specify on which port the Express.js server will run
-const PORT = 3001;
+app.use(express.json()); // Middleware for parsing application/json
+app.use(express.urlencoded({ extended: true })); //Middleware for urlencoded data
 
-// Static middleware pointing to the public folder
-app.use(express.static('public'));
+app.use(express.static('public')); // Static middleware pointing to the public folder
 
-// Create Express.js routes for default '/', '/send' and '/routes' endpoints
-app.get('/', (req, res) => res.send('Navigate to /send or /routes'));
-
-app.get('/send', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/sendFile.html'))
+//content from unit 11.
+// Create Express.js routes for default '/' and '/newMessage' endpoints
+app.get('/', (req, res) =>
+    res.sendFile(path.join(__dirname, 'public/index.html'))
 );
 
-app.get('/routes', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/routes.html'))
+app.get('/new', (req, res) => 
+    res.sendFile(path.join(__dirname, 'public/newMessage.html'))
 );
+
+// Endpoint to return own locally stored data
+app.get('/api', (req, res) => res.json(messages));
 
 // listen() method is responsible for listening for incoming connections on the specified port 
 app.listen(PORT, () =>

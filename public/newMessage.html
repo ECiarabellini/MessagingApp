@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Message</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header> New Message</header>
+    <form id="message-form">
+          <label for="recipient">Recipient Username</label>
+          <input
+            type="text"
+            class="form-input"
+            id="username"
+            placeholder="Enter username"
+          />
+          <br>
+          <label for="subject">Subject</label>
+          <input
+            type="text"
+            class="form-input"
+            id="subject"
+            placeholder="subject"
+          />
+          <br>
+          <label for="message-body">Message</label>
+          <textarea            
+            class="form-input"
+            id="message-body"
+            placeholder="message">
+          </textarea>
+
+          <br>
+        <button type="submit" id="send-btn"> Send </button>
+      </form>
+
+  </body>
+</html>

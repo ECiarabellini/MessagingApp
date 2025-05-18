@@ -1,3 +1,5 @@
+
+
 function Message(to, from, subject, body) {
     this.to = to;
     this.from = from;
@@ -10,7 +12,7 @@ Message.prototype.sendConfirm = function () {
     console.log(`Message sent to ${this.to}`);
 }; 
 
-const message1 = new Message('Jeremy', 'Emily', 'Big News', 'I got a new job!');
+//const message1 = new Message('Jeremy', 'Emily', 'Big News', 'I got a new job!');
 
 //template literal
 let messageDetails =
@@ -21,6 +23,24 @@ ${message1.body}`;
 
 // console.log(messageDetails);
 // console.log(message1.sendConfirm());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = Message;
