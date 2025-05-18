@@ -8,12 +8,20 @@
   <body>
     <header> New Message</header>
     <form id="message-form">
+        <label for="sender">Sender Username</label>
+        <input
+          type="text"
+          class="form-input"
+          id="sender"
+          placeholder="From Username"
+        />
+        <br>
           <label for="recipient">Recipient Username</label>
           <input
             type="text"
             class="form-input"
-            id="username"
-            placeholder="Enter username"
+            id="recipient"
+            placeholder="To username"
           />
           <br>
           <label for="subject">Subject</label>
@@ -24,16 +32,16 @@
             placeholder="subject"
           />
           <br>
-          <label for="message-body">Message</label>
+          <label for="message-text">Message</label>
           <textarea            
             class="form-input"
-            id="message-body"
+            id="message-text"
             placeholder="message">
           </textarea>
 
           <br>
         <button type="submit" id="send-btn"> Send </button>
       </form>
-
+      <script src="index.js"></script>
   </body>
 </html>
