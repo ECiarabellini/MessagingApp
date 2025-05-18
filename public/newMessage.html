@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Message</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header> New Message</header>
+    <form id="message-form">
+        <label for="sender">Sender Username</label>
+        <input
+          type="text"
+          class="form-input"
+          id="sender"
+          placeholder="From Username"
+        />
+        <br>
+          <label for="recipient">Recipient Username</label>
+          <input
+            type="text"
+            class="form-input"
+            id="recipient"
+            placeholder="To username"
+          />
+          <br>
+          <label for="subject">Subject</label>
+          <input
+            type="text"
+            class="form-input"
+            id="subject"
+            placeholder="subject"
+          />
+          <br>
+          <label for="message-text">Message</label>
+          <textarea            
+            class="form-input"
+            id="message-text"
+            placeholder="message">
+          </textarea>
+
+          <br>
+        <button type="submit" id="send-btn"> Send </button>
+      </form>
+      <script src="index.js"></script>
+  </body>
+</html>
