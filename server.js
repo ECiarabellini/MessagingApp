@@ -15,6 +15,11 @@ sequelize.sync().then(() => {
     app.listen(PORT, () => console.log('Now listening'));
 });
 
+// listen() method is responsible for listening for incoming connections on the specified port 
+app.listen(PORT, () =>
+    console.log(`App listening at http://localhost:${PORT}`)
+);
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -43,7 +48,6 @@ app.post('/api/messages', (req, res) => {
         })
             .then((newMessage) => {
                 res.json(newMessage);
-                console.log(newMessage);
             })
             .catch((err) => {
                 res.json(err);
@@ -51,9 +55,54 @@ app.post('/api/messages', (req, res) => {
         }
 });
 
+// GET request to retrieve all messages
+app.get('/api/messages', async (req, res) => {
+    console.info(`${req.method} request received to retrieve all messages`);
 
+    try {
+        const allMessages = await Message.findAll();
+        res.json(allMessages);
+        console.log(`Retrieved ${allMessages.length} messages.`);
+    } catch (error) {
+        console.error('Error retrieving messages:', error);
+        res.status(500).json({ error: 'Failed to retrieve messages' });
+    }
+});
 
-// listen() method is responsible for listening for incoming connections on the specified port 
-app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT}`)
-);
+// GET request to retrieve all messages to a specific toUser
+app.get('/api/messages/to/:toUser', async (req, res) => {
+    console.info(`${req.method} request received to retrieve messages for recipient: ${req.params.toUser}`);
+    const recipient = req.params.toUser;
+
+    try {
+        const messages = await Message.findAll({
+        where: {
+            toUser: recipient,
+        },
+        });
+        res.json(messages);
+        console.log(`Retrieved ${messages.length} messages for recipient: ${recipient}`);
+    } catch (error) {
+        console.error(`Error retrieving messages for recipient ${recipient}:`, error);
+        res.status(500).json({ error: `Failed to retrieve messages for recipient: ${recipient}` });
+    }
+});
+
+// GET request to retrieve all messages from a specific fromUser
+app.get('/api/messages/from/:fromUser', async (req, res) => {
+    console.info(`${req.method} request received to retrieve messages for sender: ${req.params.toUser}`);
+    const sender = req.params.fromUser;
+
+    try {
+        const messages = await Message.findAll({
+        where: {
+            fromUser: sender,
+        },
+        });
+        res.json(messages);
+        console.log(`Retrieved ${messages.length} messages for sender: ${sender}`);
+    } catch (error) {
+        console.error(`Error retrieving messages for sender ${sender}:`, error);
+        res.status(500).json({ error: `Failed to retrieve messages for sender: ${sender}` });
+    }
+});
