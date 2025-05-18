@@ -1,2 +1,13 @@
 DROP DATABASE IF EXISTS messaging_db;
 CREATE DATABASE messaging_db;
+
+USE messaging_db;
+
+CREATE TABLE messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fromUser VARCHAR(254) NOT NULL,
+    toUser VARCHAR(254) NOT NULL,
+    subjectLine VARCHAR(70) NOT NULL,
+    bodyText TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
