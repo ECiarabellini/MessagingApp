@@ -9,7 +9,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json()); // Middleware for parsing application/json
 app.use(express.urlencoded({ extended: true })); //Middleware for urlencoded data
-
 app.use(express.static('public')); // Static middleware pointing to the public folder
 
 sequelize.sync().then(() => {
