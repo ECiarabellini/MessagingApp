@@ -38,7 +38,7 @@ Message.init(
         sequelize,
         timestamps: false,
         freezeTableName: true,
-        underscored: true,
+        underscored: false,
         modelName: 'message',
         tableName: 'messages' // Explicitly set to match the SQL
     }
